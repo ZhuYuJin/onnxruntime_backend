@@ -77,8 +77,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # The Onnx Runtime dockerfile is the collection of steps in
 # https://github.com/microsoft/onnxruntime/tree/master/dockerfiles
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN sed -i s@/security.ubuntu.com/@/mirrors.ustc.edu.cn/@g /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN unset https_proxy && unset http_proxy \
+    && unset HTTPS_PROXY && unset HTTP_PROXY \
+    && apt-get update && apt-get install -y --no-install-recommends \
         software-properties-common \
         wget \
         zip \
@@ -99,8 +103,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | \
       gpg --dearmor - |  \
       tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null && \
-    apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
-    apt-get update && \
+    apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+
+RUN unset https_proxy && unset http_proxy \
+    && unset HTTPS_PROXY && unset HTTP_PROXY \
+    && apt-get update && \
     apt-get install -y --no-install-recommends \
       cmake-data=3.21.1-0kitware1ubuntu20.04.1 cmake=3.21.1-0kitware1ubuntu20.04.1 && \
     cmake --version
