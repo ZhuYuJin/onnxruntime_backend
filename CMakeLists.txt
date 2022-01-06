@@ -351,7 +351,8 @@ if(TRITON_ONNXRUNTIME_DOCKER_BUILD)
       #COMMAND rm -fr onnxruntime
       COMMAND echo "=========>"
       COMMAND pwd
-      #COMMAND docker cp onnxruntime_backend_ort:/opt/onnxruntime onnxruntime
+      COMMAND echo "=========>"
+      COMMAND docker cp onnxruntime_backend_ort:/opt/onnxruntime onnxruntime
       #COMMAND docker rm onnxruntime_backend_ort
       COMMENT "Building ONNX Runtime"
     )
