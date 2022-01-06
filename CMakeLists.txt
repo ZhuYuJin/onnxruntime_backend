@@ -350,8 +350,8 @@ if(TRITON_ONNXRUNTIME_DOCKER_BUILD)
       #COMMAND docker create --name onnxruntime_backend_ort ${TRITON_ONNXRUNTIME_DOCKER_IMAGE}
       #COMMAND rm -fr onnxruntime
       COMMAND echo `pwd`
-      COMMAND ls `/workspace`
-      COMMAND cp -r /workspace/onnxruntime onnxruntime
+      COMMAND ls `/opt`
+      COMMAND cp -r /opt/onnxruntime onnxruntime
       #COMMAND docker cp onnxruntime_backend_ort:/opt/onnxruntime onnxruntime
       #COMMAND docker rm onnxruntime_backend_ort
       COMMENT "Building ONNX Runtime"
