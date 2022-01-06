@@ -348,7 +348,7 @@ if(TRITON_ONNXRUNTIME_DOCKER_BUILD)
       #COMMAND docker build --cache-from=${TRITON_ONNXRUNTIME_DOCKER_IMAGE} --cache-from=${TRITON_ONNXRUNTIME_DOCKER_IMAGE}_cache0 --cache-from=${TRITON_ONNXRUNTIME_DOCKER_IMAGE}_cache1 -t ${TRITON_ONNXRUNTIME_DOCKER_IMAGE} -f ./Dockerfile.ort ${CMAKE_CURRENT_SOURCE_DIR}
       #COMMAND docker rm onnxruntime_backend_ort || echo 'error ignored...' || true
       #COMMAND docker create --name onnxruntime_backend_ort ${TRITON_ONNXRUNTIME_DOCKER_IMAGE}
-      COMMAND rm -fr onnxruntime
+      #COMMAND rm -fr onnxruntime
       COMMAND echo "=========>"
       COMMAND pwd
       #COMMAND docker cp onnxruntime_backend_ort:/opt/onnxruntime onnxruntime
