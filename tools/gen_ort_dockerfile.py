@@ -65,8 +65,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # The Onnx Runtime dockerfile is the collection of steps in
 # https://github.com/microsoft/onnxruntime/tree/master/dockerfiles
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN sed -i s@/security.ubuntu.com/@/mirrors.ustc.edu.cn/@g /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN unset https_proxy && unset http_proxy \
+    && unset HTTPS_PROXY && unset HTTP_PROXY \
+    && apt-get update && apt-get install -y --no-install-recommends \
         software-properties-common \
         wget \
         zip \
